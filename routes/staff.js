@@ -11,6 +11,7 @@ function getListStaff(path='./public/database/staff'){
     return tables;
 }
 
+
 router.get('/', function(req, res, next) {
     let names = [];
     let posts = [];

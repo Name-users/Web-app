@@ -7,11 +7,16 @@ html
         h1= page
         h2= type
         p= description
-        p Composition
+        //p Composition
         ul
-            // each val in composition
-            //     li= val
-            - for (var x = 0; x < composition.length; x++)
-                li= composition[x]
-        img(src= image)
+            - for (var x = 0; x < names.length; x++)
+                li
+                    p= names[x]
+                    p Description: #{descriptions[x]}
+                    p Composition:
+                         - for (var y = 0; y < compositions[x].length; y++)
+                             li= compositions[x][y]
+                    img(src= images[x])
+
+        //img(src= image)
 
