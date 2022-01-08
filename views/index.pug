@@ -7,14 +7,24 @@ html
     h1= title
     p Welcome to #{title}
     ul(class='index_buttons')
-      li
-        a(href='/menu') Menu
-      li
-        a(href='/tables') Book a table
-      li
-        a(href='/staff') Staff
-      li
-        a(href='/self') Self
+      if is_admin
+        li
+          a(href='/admin/menu') Menu
+        li
+          a(href='/admin/tables') Book a table
+        li
+          a(href='/admin/staff') Staff
+        li
+          a(href='/admin/self') Self
+      else
+        li
+          a(href='/menu') Menu
+        li
+          a(href='/tables') Book a table
+        li
+          a(href='/staff') Staff
+        li
+          a(href='/self') Self
 
     img(src='images/index.jpg')
 

@@ -59,3 +59,17 @@ exports.post_delete_table = function (req, res, next) {
         .contentType("text/plain")
         .end("The table is delete successfully!");
 };
+
+exports.post_add_type_menu = function (req, res, next) {
+    if (db_helper.getElementsFromDir('./public/database/menu').indexOf(req.params.number) !== -1 || req.body.type.length < 1) {
+        let err = new Error('Категория уже существует!');
+        err.status = 400;
+        return next(err);
+    }
+    let path = './public/database/menu/' + req.body.type
+    fs.mkdir(path, err => {})
+    res
+        .status(200)
+        .contentType("text/plain")
+        .end("The category is create successfully!");
+};
