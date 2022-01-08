@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1= page
+        p= description
+        - for (var x = 0; x < names.length; x++)
+            li
+                p= names[x]
+                p Post: #{posts[x]}
+                p Self: #{selfs[x]}
+                img(src= images[x])
+        img(src='/images/self.webp')
+

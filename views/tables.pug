@@ -1,0 +1,12 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1= page
+        p= description
+         - for (var x = 0; x < tables.length; x++)
+            li
+                a(href='/tables/' + tables[x]) Table #{tables[x]}
+        img(src='images/tables.jpg')

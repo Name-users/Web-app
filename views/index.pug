@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h1= title
+    p Welcome to #{title}
+    ul(class='index_buttons')
+      li
+        a(href='/menu') Menu
+      li
+        a(href='/tables') Book a table
+      li
+        a(href='/staff') Staff
+      li
+        a(href='/self') Self
+
+    img(src='images/index.jpg')
+
+//extends layout
+//
+//block content
+//  h1= title
+//  p Welcome to #{title}
+//  button.buttonComponent(href='/menu')
+//    // @slot Use this slot default
+//    b Text Bonjour
+//    slot

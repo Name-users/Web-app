@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1= page
+        p= description
+        - for (var x = 0; x < list.length; x++)
+            - var name = list[x].split('/')[list[x].split('/').length - 1]
+            li
+                a(href=list[x]) #{name}
+

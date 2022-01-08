@@ -1,0 +1,8 @@
+{
+  "name": "BigMak",
+  "description": "Description by BigMak",
+  "composition": ["cheese", "bread"],
+  "path": "./public/database/menu/Burgers/BigMak.json",
+  "url": "/menu/Burgers/BigMak",
+  "image": "/images/Burgers/BigMak.jpg"
+}

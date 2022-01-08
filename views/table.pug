@@ -1,0 +1,21 @@
+doctype html
+
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1= page
+        if table_status
+            p Status of table: not booked
+        else
+            p Status of table: booked
+        p Description of table: #{description}
+
+        if table_status
+            form(method='POST', action='')
+                label Enter a name to book a table:
+                input(name='name', value='', type='text')
+                input(value='Book a table', type='submit')
+
+        img(src='/images/tables.jpg')

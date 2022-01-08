@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1= page
+        h2= type
+        p= description
+        p Composition
+        ul
+            // each val in composition
+            //     li= val
+            - for (var x = 0; x < composition.length; x++)
+                li= composition[x]
+        img(src= image)
+
