@@ -5,7 +5,7 @@ html
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        h1= page
+        h1 Table #{number}
         if table_status
             p Status of table: not booked
         else
@@ -17,5 +17,14 @@ html
                 label Enter a name to book a table:
                 input(name='name', value='', type='text')
                 input(value='Book a table', type='submit')
+        else
+            if is_admin
+                form(method='POST', action= number + '/open')
+                    input(value='Снять бронь', type='submit')
+        if is_admin
+            form(method='POST', action= number + '/delete')
+                input(value='Delete table', type='submit')
+
+
 
         img(src='/images/tables.jpg')

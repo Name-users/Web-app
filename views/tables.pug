@@ -8,5 +8,15 @@ html
         p= description
          - for (var x = 0; x < tables.length; x++)
             li
-                a(href='/tables/' + tables[x]) Table #{tables[x]}
-        img(src='images/tables.jpg')
+                if is_admin
+                    a(href='/admin/tables/' + tables[x]) Table #{tables[x]}
+                else
+                    a(href='/tables/' + tables[x]) Table #{tables[x]}
+        if is_admin
+            form(method='POST', action='/admin/tables/update')
+                label Number:
+                    input(name='number', value='', type='text')
+                label Description:
+                    input(name='description', value='', type='text')
+                input(value='Create table', type='submit')
+        img(src='/images/tables.jpg')
