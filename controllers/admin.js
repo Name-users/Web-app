@@ -87,17 +87,37 @@ exports.post_delete_type_menu = function (req, res, next) {
         .end("The category is delete successfully!");
 };
 
-// --------------------------------------
-
 exports.get_menu_type_update = function (req, res, next) {
     let food = db_helper.getObjectByPath('./public/database/menu/' + req.params.type + '/' + req.params.name + '.json')
     res.render('food_update', {
         title: 'The Krusty Krab',
         name: food.name,
         path: food.name,
-        description: food.description,
-        composition: food.composition.toString()
+        l2: 'Description',
+        i2: food.description,
+        l3: 'Composition',
+        i3: food.composition.toString()
     })
+}
+
+exports.get_staff_type_update = function (req, res, next) {
+    let el = db_helper.getObjectByPath('./public/database/staff/' + req.params.name + '.json')
+    res.render('food_update', {
+        title: 'The Krusty Krab',
+        name: el.name,
+        path: el.name,
+        l2: 'Post',
+        i2: el.post,
+        l3: 'Self',
+        i3: el.self
+    })
+    // res.render('food_update', {
+    //     title: 'The Krusty Krab',
+    //     name: el.name,
+    //     path: el.name,
+    //     post: el.post,
+    //     self: el.self
+    // })
 }
 
 exports.get_menu_type_add = function (req, res, next) {
@@ -105,14 +125,46 @@ exports.get_menu_type_add = function (req, res, next) {
         title: 'The Krusty Krab',
         name: '',
         path: 'add',
-        description: '',
-        composition: ''
+        l2: 'Description',
+        i2: '',
+        l3: 'Composition',
+        i3: ''
+    })
+}
+
+exports.get_staff_type_add = function (req, res, next) {
+    res.render('food_update', {
+        title: 'The Krusty Krab',
+        name: '',
+        path: 'add',
+        l2: 'Post',
+        i2: '',
+        l3: 'Self',
+        i3: ''
     })
 }
 
 exports.post_menu_type_delete = function (req, res, next) {
     let path = './public/database/menu/' + req.params.type + '/' + req.params.name + '.json'
     if (db_helper.existFile('./public/database/menu/' + req.params.type, req.params.name)) {
+        let el = db_helper.getObjectByPath(path)
+        db_helper.deleteFile('./public' + el.image)
+        db_helper.deleteFile(path)
+        res
+            .status(200)
+            .contentType("text/plain")
+            .end("The element is delete successfully!");
+    }
+    else
+        res
+            .status(400)
+            .contentType("text/plain")
+            .end("Удалить не удалось!");
+}
+
+exports.post_staff_type_delete = function (req, res, next) {
+    let path = './public/database/staff/' + req.params.name + '.json'
+    if (db_helper.existFile('./public/database/staff/', req.params.name)) {
         let el = db_helper.getObjectByPath(path)
         db_helper.deleteFile('./public' + el.image)
         db_helper.deleteFile(path)
@@ -136,7 +188,7 @@ exports.post_menu_type_update = function (req, res, next) {
         image: '/images/menu/' + req.file.filename
     }
     let filedata = req.file;
-    console.log(filedata);
+    //console.log(filedata);
     if (!filedata){
         let err = new Error('Ошибка загрузки изображения!');
         err.status = 400;
@@ -147,6 +199,31 @@ exports.post_menu_type_update = function (req, res, next) {
         db_helper.deleteFile('./public' + db_helper.getObjectByPath(path).image)
 
     fs.writeFileSync(path, JSON.stringify(food))
+    res
+        .status(200)
+        .contentType("text/plain")
+        .end("The successfully!");
+};
+
+exports.post_staff_type_update = function (req, res, next) {
+    let el = {
+        name: req.body.name,
+        post: req.body.post,
+        self: req.body.self,
+        image: '/images/staff/' + req.file.filename
+    }
+    let filedata = req.file;
+    //console.log(filedata);
+    if (!filedata){
+        let err = new Error('Ошибка загрузки изображения!');
+        err.status = 400;
+        return next(err);
+    }
+    let path = './public/database/staff/' + el.name + '.json'
+    if (db_helper.existFile('./public/database/staff/', el.name))
+        db_helper.deleteFile('./public' + db_helper.getObjectByPath(path).image)
+
+    fs.writeFileSync(path, JSON.stringify(el))
     res
         .status(200)
         .contentType("text/plain")

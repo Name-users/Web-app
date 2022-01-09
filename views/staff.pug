@@ -9,8 +9,12 @@ html
         - for (var x = 0; x < names.length; x++)
             li
                 p= names[x]
+                if is_admin
+                    a(href=page.toLowerCase() + '/' + names[x]) Edit
                 p Post: #{posts[x]}
                 p Self: #{selfs[x]}
                 img(src= images[x])
+        if is_admin
+            a(href=page.toLowerCase() + '/add') Add staff
         img(src='/images/self.webp')
 

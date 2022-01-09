@@ -4,8 +4,6 @@ html
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        //h1= page
-        //p= description
         h1 Update
 
         form(method='POST', action=path + '/update', enctype="multipart/form-data")
@@ -13,11 +11,11 @@ html
                 label Name:
                     input(name='name', value= name, type='text')
             li
-                label Description:
-                    input(name='description', value= description, type='text')
+                label #{l2}:
+                    input(name= l2.toLowerCase(), value= i2, type='text')
             li
-                label Composition:
-                    input(name='composition', value= composition, type='text')
+                label #{l3}:
+                    input(name=l3.toLowerCase(), value= i3, type='text')
             li
                 label Image:
                     input(name='filedata', type='file')
