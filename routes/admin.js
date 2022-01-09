@@ -5,6 +5,8 @@ const tables = require('../controllers/tables');
 const index = require('../controllers/index');
 const menu = require("../controllers/menu");
 
+//FIXME: на пути где стоит пост поставить get?
+
 router.get('/', index.get(true));
 router.get('/menu', menu.get(true));
 router.post('/menu/update', admin.post_add_type_menu);
@@ -12,12 +14,14 @@ router.get('/menu/:type', menu.get_by_type(true));
 router.post('/menu/:type/delete', admin.post_delete_type_menu);
 const multer = require("multer");
 
+router.get('/menu/:type/add', admin.get_menu_type_add)
 router.post( //'/menu/:type/:name/update',
     //'/upload',
     '/menu/:type/:name/update',
     multer({dest: "public/images/menu"}).single("filedata"),
     admin.post_menu_type_update
 )
+router.post('/menu/:type/:name/delete', admin.post_menu_type_delete)
 
 router.get('/menu/:type/:name', admin.get_menu_type_update)
 

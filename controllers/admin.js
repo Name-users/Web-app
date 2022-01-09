@@ -89,65 +89,66 @@ exports.post_delete_type_menu = function (req, res, next) {
 
 // --------------------------------------
 
-const multer = require("multer");
-
-const handleError = (err, res) => {
-    res
-        .status(500)
-        .contentType("text/plain")
-        .end("Oops! Something went wrong!");
-};
-
-// const upload = multer({
-//     dest: "./puplic/database/menu"
-//     // you might also want to set some limits: https://github.com/expressjs/multer#limits
-// });
-
 exports.get_menu_type_update = function (req, res, next) {
-    //res.sendfile('./views/test_file.html');
+    let food = db_helper.getObjectByPath('./public/database/menu/' + req.params.type + '/' + req.params.name + '.json')
     res.render('food_update', {
         title: 'The Krusty Krab',
-        page: req.params.name,
-        description: 'Update food'
+        name: food.name,
+        path: food.name,
+        description: food.description,
+        composition: food.composition.toString()
     })
 }
 
+exports.get_menu_type_add = function (req, res, next) {
+    res.render('food_update', {
+        title: 'The Krusty Krab',
+        name: '',
+        path: 'add',
+        description: '',
+        composition: ''
+    })
+}
+
+exports.post_menu_type_delete = function (req, res, next) {
+    let path = './public/database/menu/' + req.params.type + '/' + req.params.name + '.json'
+    if (db_helper.existFile('./public/database/menu/' + req.params.type, req.params.name)) {
+        let el = db_helper.getObjectByPath(path)
+        db_helper.deleteFile('./public' + el.image)
+        db_helper.deleteFile(path)
+        res
+            .status(200)
+            .contentType("text/plain")
+            .end("The element is delete successfully!");
+    }
+    else
+        res
+            .status(400)
+            .contentType("text/plain")
+            .end("Удалить не удалось!");
+}
+
 exports.post_menu_type_update = function (req, res, next) {
-    //upload.single("file" /* name attribute of <file> element in your form */),
-    //(req, res) => {
-        let filedata = req.file;
-        console.log(filedata);
-        if (!filedata){
-            let err = new Error('Ошибка загрузки изображения!');
-            err.status = 400;
-            return next(err);
-        }
+    let food = {
+        name: req.body.name,
+        description: req.body.description,
+        composition: req.body.composition.split(','),
+        image: '/images/menu/' + req.file.filename
+    }
+    let filedata = req.file;
+    console.log(filedata);
+    if (!filedata){
+        let err = new Error('Ошибка загрузки изображения!');
+        err.status = 400;
+        return next(err);
+    }
+    let path = './public/database/menu/' + req.params.type + '/' + food.name + '.json'
+    if (db_helper.existFile('./public/database/menu/' + req.params.type, food.name))
+        db_helper.deleteFile('./public' + db_helper.getObjectByPath(path).image)
+
+    fs.writeFileSync(path, JSON.stringify(food))
     res
         .status(200)
         .contentType("text/plain")
         .end("The successfully!");
-
-        // const tempPath = req.file.path;
-        // const targetPath = "./puplic/database/menu" + req.file.path;
-        // if (/*path.extname(req.file.originalname).toLowerCase() === ".png" && */true) {
-        //     fs.rename(tempPath, targetPath, err => {
-        //         if (err) return handleError(err, res);
-        //
-        //         res
-        //             .status(200)
-        //             .contentType("text/plain")
-        //             .end("File uploaded!");
-        //     });
-        // } else {
-        //     fs.unlink(tempPath, err => {
-        //         if (err) return handleError(err, res);
-        //
-        //         res
-        //             .status(403)
-        //             .contentType("text/plain")
-        //             .end("Only .png files are allowed!");
-        //     });
-        // }
-
-   // }
 };

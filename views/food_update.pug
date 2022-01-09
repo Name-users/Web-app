@@ -4,18 +4,27 @@ html
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        h1= page
-        p= description
+        //h1= page
+        //p= description
+        h1 Update
 
-        form(method='POST', action=page + '/update', enctype="multipart/form-data")
-            //label Name:
-            //    input(name='name', value='', type='text')
-            //label Description:
-            //    input(name='description', value='', type='text')
-            //label Composition:
-            //    input(name='composition', value='', type='text')
-            label Image:
-                input(name='filedata', type='file')
+        form(method='POST', action=path + '/update', enctype="multipart/form-data")
+            li
+                label Name:
+                    input(name='name', value= name, type='text')
+            li
+                label Description:
+                    input(name='description', value= description, type='text')
+            li
+                label Composition:
+                    input(name='composition', value= composition, type='text')
+            li
+                label Image:
+                    input(name='filedata', type='file')
             input(value='Update', type='submit')
+
+        form(method= 'POST', action= path + '/delete')
+            input(value='Delete', type='submit')
+
 
         // add delete form

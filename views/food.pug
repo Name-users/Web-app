@@ -13,7 +13,7 @@ html
                 li
                     p= names[x]
                     if is_admin
-                        a(href=page + '/' +names[x]) #{names[x]}
+                        a(href=page + '/' +names[x]) Edit
                     p Description: #{descriptions[x]}
                     p Composition:
                          - for (var y = 0; y < compositions[x].length; y++)
@@ -23,5 +23,7 @@ html
         if is_admin && names.length === 0
             form(method='POST', action= page + '/delete')
                 input(value='Delete category of menu', type='submit')
+        if is_admin
+            a(href=page + '/add') Add food
         //img(src= image)
 
