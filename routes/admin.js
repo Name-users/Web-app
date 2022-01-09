@@ -38,5 +38,9 @@ router.post('/staff/:name/update',
 )
 router.post('/staff/:name/delete', admin.post_staff_type_delete)
 
+router.get('/self', function(req, res, next) {
+    res.render('self');
+});
+
 
 module.exports = router;
