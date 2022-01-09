@@ -98,18 +98,18 @@ const handleError = (err, res) => {
         .end("Oops! Something went wrong!");
 };
 
-const upload = multer({
-    dest: "./puplic/database/menu"
-    // you might also want to set some limits: https://github.com/expressjs/multer#limits
-});
+// const upload = multer({
+//     dest: "./puplic/database/menu"
+//     // you might also want to set some limits: https://github.com/expressjs/multer#limits
+// });
 
 exports.get_menu_type_update = function (req, res, next) {
-    res.sendfile('./views/test_file.html');
-    // res.render('food_update', {
-    //     title: 'The Krusty Krab',
-    //     page: req.params.name,
-    //     description: 'Update food'
-    // })
+    //res.sendfile('./views/test_file.html');
+    res.render('food_update', {
+        title: 'The Krusty Krab',
+        page: req.params.name,
+        description: 'Update food'
+    })
 }
 
 exports.post_menu_type_update = function (req, res, next) {
@@ -118,7 +118,7 @@ exports.post_menu_type_update = function (req, res, next) {
         let filedata = req.file;
         console.log(filedata);
         if (!filedata){
-            let err = new Error('Не удалось!');
+            let err = new Error('Ошибка загрузки изображения!');
             err.status = 400;
             return next(err);
         }

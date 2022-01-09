@@ -13,8 +13,9 @@ router.post('/menu/:type/delete', admin.post_delete_type_menu);
 const multer = require("multer");
 
 router.post( //'/menu/:type/:name/update',
-    '/upload',
-    multer({dest: "test"}).single("filedata"),
+    //'/upload',
+    '/menu/:type/:name/update',
+    multer({dest: "public/images/menu"}).single("filedata"),
     admin.post_menu_type_update
 )
 

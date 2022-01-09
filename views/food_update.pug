@@ -7,7 +7,7 @@ html
         h1= page
         p= description
 
-        form(method='POST', action=page + '/update')
+        form(method='POST', action=page + '/update', enctype="multipart/form-data")
             //label Name:
             //    input(name='name', value='', type='text')
             //label Description:
