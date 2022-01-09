@@ -5,18 +5,23 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
         h1= page
-        h2= type
+        //h2= type
         p= description
         //p Composition
         ul
             - for (var x = 0; x < names.length; x++)
                 li
                     p= names[x]
+                    if is_admin
+                        a(href=page + '/' +names[x]) #{names[x]}
                     p Description: #{descriptions[x]}
                     p Composition:
                          - for (var y = 0; y < compositions[x].length; y++)
                              li= compositions[x][y]
                     img(src= images[x])
-
+        // form(method='POST', action='/admin/menu/' + page + '/delete')
+        if is_admin && names.length === 0
+            form(method='POST', action= page + '/delete')
+                input(value='Delete category of menu', type='submit')
         //img(src= image)
 

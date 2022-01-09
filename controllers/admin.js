@@ -73,3 +73,81 @@ exports.post_add_type_menu = function (req, res, next) {
         .contentType("text/plain")
         .end("The category is create successfully!");
 };
+
+exports.post_delete_type_menu = function (req, res, next) {
+    if (db_helper.getElementsFromDir('./public/database/menu/' + req.params.type).length !== 0) { // FIXME: добавить проверку на существование каталога
+        let err = new Error('Не удалось удалить категорию!');
+        err.status = 400;
+        return next(err);
+    }
+    fs.rmdirSync('./public/database/menu/' + req.params.type)
+    res
+        .status(200)
+        .contentType("text/plain")
+        .end("The category is delete successfully!");
+};
+
+// --------------------------------------
+
+const multer = require("multer");
+
+const handleError = (err, res) => {
+    res
+        .status(500)
+        .contentType("text/plain")
+        .end("Oops! Something went wrong!");
+};
+
+const upload = multer({
+    dest: "./puplic/database/menu"
+    // you might also want to set some limits: https://github.com/expressjs/multer#limits
+});
+
+exports.get_menu_type_update = function (req, res, next) {
+    res.sendfile('./views/test_file.html');
+    // res.render('food_update', {
+    //     title: 'The Krusty Krab',
+    //     page: req.params.name,
+    //     description: 'Update food'
+    // })
+}
+
+exports.post_menu_type_update = function (req, res, next) {
+    //upload.single("file" /* name attribute of <file> element in your form */),
+    //(req, res) => {
+        let filedata = req.file;
+        console.log(filedata);
+        if (!filedata){
+            let err = new Error('Не удалось!');
+            err.status = 400;
+            return next(err);
+        }
+    res
+        .status(200)
+        .contentType("text/plain")
+        .end("The successfully!");
+
+        // const tempPath = req.file.path;
+        // const targetPath = "./puplic/database/menu" + req.file.path;
+        // if (/*path.extname(req.file.originalname).toLowerCase() === ".png" && */true) {
+        //     fs.rename(tempPath, targetPath, err => {
+        //         if (err) return handleError(err, res);
+        //
+        //         res
+        //             .status(200)
+        //             .contentType("text/plain")
+        //             .end("File uploaded!");
+        //     });
+        // } else {
+        //     fs.unlink(tempPath, err => {
+        //         if (err) return handleError(err, res);
+        //
+        //         res
+        //             .status(403)
+        //             .contentType("text/plain")
+        //             .end("Only .png files are allowed!");
+        //     });
+        // }
+
+   // }
+};

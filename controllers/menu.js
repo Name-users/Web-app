@@ -44,7 +44,7 @@ exports.get_by_type = function(is_admin) {
             descriptions: descriptions,
             compositions: compositions,
             images: images,
-            is_admin, is_admin
+            is_admin: is_admin
         });
     };
 }

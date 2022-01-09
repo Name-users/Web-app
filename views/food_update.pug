@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1= page
+        p= description
+
+        form(method='POST', action=page + '/update')
+            //label Name:
+            //    input(name='name', value='', type='text')
+            //label Description:
+            //    input(name='description', value='', type='text')
+            //label Composition:
+            //    input(name='composition', value='', type='text')
+            label Image:
+                input(name='filedata', type='file')
+            input(value='Update', type='submit')
+
+        // add delete form

@@ -9,6 +9,17 @@ router.get('/', index.get(true));
 router.get('/menu', menu.get(true));
 router.post('/menu/update', admin.post_add_type_menu);
 router.get('/menu/:type', menu.get_by_type(true));
+router.post('/menu/:type/delete', admin.post_delete_type_menu);
+const multer = require("multer");
+
+router.post( //'/menu/:type/:name/update',
+    '/upload',
+    multer({dest: "test"}).single("filedata"),
+    admin.post_menu_type_update
+)
+
+router.get('/menu/:type/:name', admin.get_menu_type_update)
+
 router.get('/tables', tables.get(true));
 router.post('/tables/update', admin.post_add_table)
 router.get('/tables/:number', tables.get_by_number(true));
