@@ -67,12 +67,37 @@ exports.post_add_type_menu = function (req, res, next) {
         return next(err);
     }
     let path = './public/database/menu/' + req.body.type
-    fs.mkdir(path, err => {})
-    res
-        .status(200)
-        .contentType("text/plain")
-        .end("The category is create successfully!");
+    fs.mkdir(path, err => {
+        if (err) return next(err)
+        next()
+    })
+    next()
 };
+
+exports.get_add_type_menu = function (req, res, next) {
+    res.redirect('/admin/menu')
+}
+// exports.post_add_type_menu = function (req, res, next) {
+//     if (db_helper.getElementsFromDir('./public/database/menu').indexOf(req.params.number) !== -1 || req.body.type.length < 1) {
+//         let err = new Error('Категория уже существует!');
+//         err.status = 400;
+//         return next(err);
+//     }
+//     let path = './public/database/menu/' + req.body.type
+//     fs.mkdir(path, err => {
+//         if (err) return next(err)
+//         res
+//             .status(200)
+//             //.contentType("text/plain")
+//             //.end("The category is create successfully!");
+//         next()
+//     })
+//     next()
+// };
+//
+// exports.get_add_type_menu = function (req, res, next) {
+//     res.redirect('/admin/menu')
+// }
 
 exports.post_delete_type_menu = function (req, res, next) {
     if (db_helper.getElementsFromDir('./public/database/menu/' + req.params.type).length !== 0) { // FIXME: добавить проверку на существование каталога
