@@ -3,28 +3,35 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/tables.css')
     body
-        h1 Table #{number}
-        if table_status
-            p Status of table: not booked
-        else
-            p Status of table: booked
-        p Description of table: #{description}
+        div.background_tables
+            h1.title= title
+            p.page Table #{number}
+            if table_status
+                p.description Status of table: not booked
+            else
+                p.description Status of table: booked
+            p.description Description of table: #{description}
 
-        if table_status
-            form(method='POST', action='')
-                label Enter a name to book a table:
-                input(name='name', value='', type='text')
-                input(value='Book a table', type='submit')
-        else
+            if table_status
+                form(method='POST', action='')
+                    input.text(name='name', value='', type='text', placeholder="Enter a name to book a table")
+                    input.submit(value='Book a table', type='submit')
+            else
+                if is_admin
+                    form(method='POST', action= number + '/open')
+                        input.submit(value='Снять бронь', type='submit')
             if is_admin
-                form(method='POST', action= number + '/open')
-                    input(value='Снять бронь', type='submit')
-        if is_admin
-            form(method='POST', action= number + '/delete')
-                input(value='Delete table', type='submit')
+                form(method='POST', action= number + '/delete')
+                    input.submit(value='Delete table', type='submit')
+                div.board_on_background
+                    a(href='/admin/tables') Back
+            else
+                div.board_on_background
+                    a(href='/tables') Back
 
 
 
-        img(src='/images/tables.jpg')
+        //img(src='/images/tables.jpg')

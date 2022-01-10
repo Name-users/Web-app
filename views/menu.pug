@@ -2,16 +2,27 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/menu.css')
     body
-        h1= page
-        p= description
-        - for (var x = 0; x < list.length; x++)
-            - var name = list[x].split('/')[list[x].split('/').length - 1]
-            li
-                a(href=list[x]) #{name}
-        if is_admin
-            form(method='POST', action='/admin/menu/update')
-                label New category of menu:
-                    input(name='type', value='', type='text')
-                input(value='Create', type='submit')
+        div.background
+            div.background_menu
+                h1.title= title
+                p.page= page
+                p.description= description
+                - for (var x = 0; x < list.length; x++)
+                    - var name = list[x].split('/')[list[x].split('/').length - 1]
+                    li
+                        div.board_on_background
+                            a(href=list[x]) #{name}
+                if is_admin
+                    div.board_on_background
+                        a(href= '/admin') Back
+                    form(method='POST', action='/admin/menu/update')
+                        input.text(name='type', value='', type='text', placeholder="New category of menu")
+                        input.submit(value='Create', type='submit')
+                else
+                    div.board_on_background
+                        a(href= '/') Back
+
+

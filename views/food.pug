@@ -2,25 +2,41 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/menu.css')
     body
-        h1= page
-        p= description
-        ul
-            - for (var x = 0; x < names.length; x++)
+        div.background_menu
+            h1.title= title
+            p.page= page
+            p.description= description
+            ul
+                - for (var x = 0; x < names.length; x++)
+                    div.certain_food
+                        li
+                            div.text
+                                if is_admin
+                                    a(href=page + '/' +names[x]) #{names[x]} (Edit)
+                                else
+                                    p= names[x]
+                                p Description: #{descriptions[x]}
+                                p Composition: #{compositions[x].toString()}
+                                     // - for (var y = 0; y < compositions[x].length; y++)
+                                     //     li= compositions[x][y]
+                            div.image
+                                img(src= images[x])
+            if is_admin && names.length === 0
+                form(method='POST', action= page + '/delete')
+                    input.submit(value='Delete category of menu', type='submit')
+
+            if is_admin
                 li
-                    p= names[x]
-                    if is_admin
-                        a(href=page + '/' +names[x]) Edit
-                    p Description: #{descriptions[x]}
-                    p Composition:
-                         - for (var y = 0; y < compositions[x].length; y++)
-                             li= compositions[x][y]
-                    img(src= images[x])
-        if is_admin && names.length === 0
-            form(method='POST', action= page + '/delete')
-                input(value='Delete category of menu', type='submit')
-        if is_admin
-            a(href=page + '/add') Add food
-        //img(src= image)
+                    div.board_on_background
+                        a(href=page + '/add') Add food
+                li
+                    div.board_on_background
+                        a(href='/admin/menu') Back
+            else
+                div.board_on_background
+                    a(href='/menu') Back
+            //img(src= image)
 

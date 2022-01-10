@@ -1,0 +1,70 @@
+.background_menu {
+    background-image: url('/images/menu.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: fixed;
+    overflow: auto;
+
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+.background_menu {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.certain_food {
+    background-image: url('/images/element_board.png');
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+    background-size: cover;
+    /*display: flex;*/
+
+    /*display: flex;*/
+    flex-direction: column;
+    display: inline-block;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 1%;
+
+    /*position: fixed;*/
+}
+
+.certain_food a {
+    color: blue;
+    text-decoration:none;
+    font-size:120%;
+}
+
+.certain_food .text div {
+    display: inline-block;
+}
+
+.certain_food .text p {
+    color: white;
+    font-size:120%;
+}
+
+/*.background_menu p {*/
+/*    color: white;*/
+/*    font-size:120%;*/
+/*}*/
+
+.certain_food img {
+    width: 30%;
+    height: 30%;
+    display: inline-block;
+}
+
+/*div.certain_food {*/
+/*    background-image: url('/images/link_board.png');*/
+/*    background-size: cover;*/
+/*    display: inline-block;*/
+/*    overflow: auto;*/
+/*}*/

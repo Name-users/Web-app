@@ -2,21 +2,30 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/tables.css')
     body
-        h1= page
-        p= description
-         - for (var x = 0; x < tables.length; x++)
-            li
+        div.background_tables
+            h1.title= title
+            p.page= page
+            p.description= description
+             - for (var x = 0; x < tables.length; x++)
+                li
+                    div.board_on_background
+                        if is_admin
+                            a(href='/admin/tables/' + tables[x]) Table #{tables[x]}
+                        else
+                            a(href='/tables/' + tables[x]) Table #{tables[x]}
+            if is_admin
+                form(method='POST', action='/admin/tables/update')
+                    li
+                        input.text(name='number', value='', type='text', placeholder="Number")
+                    li
+                        input.text(name='description', value='', type='text', placeholder="Description")
+                    input.submit(value='Create table', type='submit')
+            div.board_on_background
                 if is_admin
-                    a(href='/admin/tables/' + tables[x]) Table #{tables[x]}
+                    a(href='/admin') Back
                 else
-                    a(href='/tables/' + tables[x]) Table #{tables[x]}
-        if is_admin
-            form(method='POST', action='/admin/tables/update')
-                label Number:
-                    input(name='number', value='', type='text')
-                label Description:
-                    input(name='description', value='', type='text')
-                input(value='Create table', type='submit')
-        img(src='/images/tables.jpg')
+                    a(href='/') Back
+        //img(src='/images/tables.jpg')

@@ -2,27 +2,39 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/menu.css')
     body
-        h1 Update
+        div.background_menu
+            h1.title= title
+            p.page Update
 
-        form(method='POST', action=path + '/update', enctype="multipart/form-data")
-            li
-                label Name:
-                    input(name='name', value= name, type='text')
-            li
-                label #{l2}:
-                    input(name= l2.toLowerCase(), value= i2, type='text')
-            li
-                label #{l3}:
-                    input(name=l3.toLowerCase(), value= i3, type='text')
-            li
-                label Image:
-                    input(name='filedata', type='file')
-            input(value='Update', type='submit')
+            form(method='POST', action=path + '/update', enctype="multipart/form-data")
+                li
+                    //label Name:
+                    input.text(name='name', value= name, type='text', placeholder="Name")
+                li
+                    //label #{l2}:
+                    input.text(name= l2.toLowerCase(), value= i2, type='text', placeholder= l2)
+                li
+                    //label #{l3}:
+                    input.text(name=l3.toLowerCase(), value= i3, type='text', placeholder= l3)
+                li
+                    //div.board_on_background
+                    //    p Выберите изображение:
+                    input.submit(name='filedata', type='file')
+                //li
+                //    label Image:
+                //        input.submit(name='filedata', type='file')
+                input.submit(value='Update', type='submit')
 
-        form(method= 'POST', action= path + '/delete')
-            input(value='Delete', type='submit')
+            if path !== 'add'
+                form(method= 'POST', action= path + '/delete')
+                    input.submit(value='Delete', type='submit')
+
+            div.board_on_background
+                a(href='/admin') Back
+
 
 
         // add delete form

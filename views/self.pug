@@ -2,8 +2,11 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/self.css')
     body
-        h1 О нас:
-        p В Бикини Ботом
-        img(src='/images/self.webp')
+        div.background_self
+            h1.title= title
+            p.page О нас
+            p.description В Бикини Ботом (почему-то не пробрасывается заголовок, добавить конпку назад и страницу ошибок)
+        //img(src='/images/self.webp')

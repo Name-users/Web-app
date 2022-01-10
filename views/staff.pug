@@ -2,19 +2,34 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/staff.css')
     body
-        h1= page
-        p= description
-        - for (var x = 0; x < names.length; x++)
-            li
-                p= names[x]
-                if is_admin
-                    a(href=page.toLowerCase() + '/' + names[x]) Edit
-                p Post: #{posts[x]}
-                p Self: #{selfs[x]}
-                img(src= images[x])
-        if is_admin
-            a(href=page.toLowerCase() + '/add') Add staff
-        img(src='/images/self.webp')
+        div.background_staff
+            h1.title= title
+            p.page= page
+            p.description= description
+            - for (var x = 0; x < names.length; x++)
+                div.certain_employee
+                    li
+                        div.text
+                            if is_admin
+                                a(href=page.toLowerCase() + '/' + names[x]) #{names[x]} (Edit)
+                            else
+                                p= names[x]
+                            p Post: #{posts[x]}
+                            p Self: #{selfs[x]}
+                        div.image
+                            img(src= images[x])
+            if is_admin
+                li
+                    div.board_on_background
+                        a(href=page.toLowerCase() + '/add') Add staff
+                li
+                    div.board_on_background
+                        a(href= '/admin') Back
+            else
+                div.board_on_background
+                    a(href='/') Back
+        //img(src='/images/self.webp')
 

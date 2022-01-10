@@ -2,31 +2,40 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
   body
-    h1= title
-    p Welcome to #{title}
-    ul(class='index_buttons')
-      if is_admin
-        li
-          a(href='/admin/menu') Menu
-        li
-          a(href='/admin/tables') Book a table
-        li
-          a(href='/admin/staff') Staff
-        li
-          a(href='/admin/self') Self
-      else
-        li
-          a(href='/menu') Menu
-        li
-          a(href='/tables') Book a table
-        li
-          a(href='/staff') Staff
-        li
-          a(href='/self') Self
+    div.background_index
+      h1.title= title
+      p.page Welcome to #{title}
+      ul(class='index_buttons')
+        if is_admin
+          li
+            div.board_on_background
+              a(href='/admin/menu') Menu
+          li
+            div.board_on_background
+              a(href='/admin/tables') Book a table
+          li
+            div.board_on_background
+              a(href='/admin/staff') Staff
+          li
+            div.board_on_background
+              a(href='/admin/self') Self
+        else
+          li
+            div.board_on_background
+              a(href='/menu') Menu
+          li
+            div.board_on_background
+              a(href='/tables') Book a table
+          li
+            div.board_on_background
+              a(href='/staff') Staff
+          li
+            div.board_on_background
+              a(href='/self') Self
 
-    img(src='images/index.jpg')
+    //img.image(src='images/index.jpg')
 
 //extends layout
 //
