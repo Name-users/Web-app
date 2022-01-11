@@ -5,6 +5,7 @@ const tables = require('../controllers/tables');
 const index = require('../controllers/index');
 const menu = require("../controllers/menu");
 const staff = require("../controllers/staff");
+const self = require("../controllers/self");
 const multer = require("multer");
 //FIXME: на пути где стоит пост поставить get?
 
@@ -39,9 +40,7 @@ router.post('/staff/:name/update',
 )
 router.post('/staff/:name/delete', admin.post_staff_type_delete)
 
-router.get('/self', function(req, res, next) {
-    res.render('self');
-});
+router.get('/self', self.get(true));
 
 
 module.exports = router;

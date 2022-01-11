@@ -19,7 +19,7 @@ body {
 }
 
 .description {
-    color: black;
+    color: white;
     font-size:200%;
 }
 
@@ -30,6 +30,7 @@ body {
 
 .page {
     font-size:300%;
+    color: white;
 }
 
 li {

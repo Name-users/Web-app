@@ -1,6 +1,10 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+doctype html
+html
+  head
+    title The Krusty Krab
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/error.css')
+  body
+      div.background_error
+          h1.page #{error.status} #{message}
+          pre #{error.stack}

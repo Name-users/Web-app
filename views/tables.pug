@@ -18,9 +18,9 @@ html
                             a(href='/tables/' + tables[x]) Table #{tables[x]}
             if is_admin
                 form(method='POST', action='/admin/tables/update')
-                    li
+                    li.post
                         input.text(name='number', value='', type='text', placeholder="Number")
-                    li
+                    li.post
                         input.text(name='description', value='', type='text', placeholder="Description")
                     input.submit(value='Create table', type='submit')
             div.board_on_background

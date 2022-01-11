@@ -8,5 +8,10 @@ html
         div.background_self
             h1.title= title
             p.page О нас
-            p.description В Бикини Ботом (почему-то не пробрасывается заголовок, добавить конпку назад и страницу ошибок)
-        //img(src='/images/self.webp')
+            p.description В Бикини Ботом
+
+            div.board_on_background
+                if is_admin
+                    a(href= '/admin') Back
+                else
+                    a(href= '/') Back
