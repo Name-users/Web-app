@@ -23,6 +23,11 @@ body {
     font-size:200%;
 }
 
+pre {
+    color: white;
+    font-size:200%;
+}
+
 .title {
     color: red;
     font-size:400%;
