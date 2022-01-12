@@ -6,34 +6,34 @@ html
   body
     div.background_index
       h1.title= title
-      p.page Welcome to #{title}
+      p.page Добро пожаловать в #{title}
       ul(class='index_buttons')
         if is_admin
           li
             div.board_on_background
-              a(href='/admin/menu') Menu
+              a(href='/admin/menu') Меню
           li
             div.board_on_background
-              a(href='/admin/tables') Book a table
+              a(href='/admin/tables') Столики
           li
             div.board_on_background
-              a(href='/admin/staff') Staff
+              a(href='/admin/staff') Персонал
           li
             div.board_on_background
-              a(href='/admin/self') Self
+              a(href='/admin/self') О нас
         else
           li
             div.board_on_background
-              a(href='/menu') Menu
+              a(href='/menu') Меню
           li
             div.board_on_background
-              a(href='/tables') Book a table
+              a(href='/tables') Столики
           li
             div.board_on_background
-              a(href='/staff') Staff
+              a(href='/staff') Персонал
           li
             div.board_on_background
-              a(href='/self') Self
+              a(href='/self') О нас
 
     //img.image(src='images/index.jpg')
 

@@ -17,12 +17,12 @@ html
                             a(href=list[x]) #{name}
                 if is_admin
                     div.board_on_background
-                        a(href= '/admin') Back
+                        a(href= '/admin') Назад
                     form(method='POST', action='/admin/menu/update')
-                        input.text(name='type', value='', type='text', placeholder="New category of menu")
-                        input.submit(value='Create', type='submit')
+                        input.text(name='type', value='', type='text', placeholder="Новая категория")
+                        input.submit(value='Создать', type='submit')
                 else
                     div.board_on_background
-                        a(href= '/') Back
+                        a(href= '/') Назад
 
 

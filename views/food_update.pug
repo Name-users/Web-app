@@ -7,12 +7,12 @@ html
     body
         div.background_menu
             h1.title= title
-            p.page Update
+            p.page Обновление
 
             form(method='POST', action=path + '/update', enctype="multipart/form-data")
                 li
                     //label Name:
-                    input.text(name='name', value= name, type='text', placeholder="Name")
+                    input.text(name='name', value= name, type='text', placeholder="Имя")
                 li
                     //label #{l2}:
                     input.text(name= l2.toLowerCase(), value= i2, type='text', placeholder= l2)
@@ -26,14 +26,14 @@ html
                 //li
                 //    label Image:
                 //        input.submit(name='filedata', type='file')
-                input.submit(value='Update', type='submit')
+                input.submit(value='Обновить', type='submit')
 
             if path !== 'add'
                 form(method= 'POST', action= path + '/delete')
-                    input.submit(value='Delete', type='submit')
+                    input.submit(value='Удалить', type='submit')
 
             div.board_on_background
-                a(href='/admin') Back
+                a(href='/admin') Назад
 
 
 

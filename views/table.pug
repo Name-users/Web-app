@@ -8,29 +8,29 @@ html
     body
         div.background_tables
             h1.title= title
-            p.page Table #{number}
+            p.page Столик #{number}
             if table_status
-                p.description Status of table: not booked
+                p.description Статус столика: не забронирован
             else
-                p.description Status of table: booked
-            p.description Description of table: #{description}
+                p.description Статус столика: забронирован
+            p.description Описание: #{description}
 
             if table_status
                 form(method='POST', action='')
-                    input.text(name='name', value='', type='text', placeholder="Enter a name to book a table")
-                    input.submit(value='Book a table', type='submit')
+                    input.text(name='name', value='', type='text', placeholder="Кодовое слово для брони (Имя)")
+                    input.submit(value='Забронировать столик', type='submit')
             else
                 if is_admin
                     form(method='POST', action= number + '/open')
                         input.submit(value='Снять бронь', type='submit')
             if is_admin
                 form(method='POST', action= number + '/delete')
-                    input.submit(value='Delete table', type='submit')
+                    input.submit(value='Удалить столик', type='submit')
                 div.board_on_background
-                    a(href='/admin/tables') Back
+                    a(href='/admin/tables') Назад
             else
                 div.board_on_background
-                    a(href='/tables') Back
+                    a(href='/tables') Назад
 
 
 

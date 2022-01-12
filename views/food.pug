@@ -15,28 +15,28 @@ html
                         li
                             div.text
                                 if is_admin
-                                    a(href=page + '/' +names[x]) #{names[x]} (Edit)
+                                    a(href=page + '/' +names[x]) #{names[x]} (Редактировать)
                                 else
                                     p= names[x]
-                                p Description: #{descriptions[x]}
-                                p Composition: #{compositions[x].toString()}
+                                p Описание: #{descriptions[x]}
+                                p Состав: #{compositions[x].toString()}
                                      // - for (var y = 0; y < compositions[x].length; y++)
                                      //     li= compositions[x][y]
                             div.image
                                 img(src= images[x])
             if is_admin && names.length === 0
                 form(method='POST', action= page + '/delete')
-                    input.submit(value='Delete category of menu', type='submit')
+                    input.submit(value='Удалить категорию', type='submit')
 
             if is_admin
                 li
                     div.board_on_background
-                        a(href=page + '/add') Add food
+                        a(href=page + '/add') Добавить позицию
                 li
                     div.board_on_background
-                        a(href='/admin/menu') Back
+                        a(href='/admin/menu') Назад
             else
                 div.board_on_background
-                    a(href='/menu') Back
+                    a(href='/menu') Назад
             //img(src= image)
 

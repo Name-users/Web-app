@@ -13,19 +13,19 @@ html
                 li
                     div.board_on_background
                         if is_admin
-                            a(href='/admin/tables/' + tables[x]) Table #{tables[x]}
+                            a(href='/admin/tables/' + tables[x]) Столик #{tables[x]}
                         else
-                            a(href='/tables/' + tables[x]) Table #{tables[x]}
+                            a(href='/tables/' + tables[x]) Столик #{tables[x]}
             if is_admin
                 form(method='POST', action='/admin/tables/update')
                     li.post
-                        input.text(name='number', value='', type='text', placeholder="Number")
+                        input.text(name='number', value='', type='text', placeholder="Номер")
                     li.post
-                        input.text(name='description', value='', type='text', placeholder="Description")
-                    input.submit(value='Create table', type='submit')
+                        input.text(name='description', value='', type='text', placeholder="Описание")
+                    input.submit(value='Создать столик', type='submit')
             div.board_on_background
                 if is_admin
-                    a(href='/admin') Back
+                    a(href='/admin') Назад
                 else
-                    a(href='/') Back
+                    a(href='/') Назад
         //img(src='/images/tables.jpg')

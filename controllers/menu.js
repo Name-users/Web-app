@@ -13,8 +13,8 @@ exports.get = function(is_admin) {
         }
         res.render('menu', {
             title: 'The Krusty Krab',
-            page: 'Menu',
-            description: 'Choose food',
+            page: 'Меню',
+            description: 'Выберите категорию',
             list: elements,
             is_admin: is_admin
         });
@@ -39,7 +39,7 @@ exports.get_by_type = function(is_admin) {
         res.render('food', {
             title: 'The Krusty Krab',
             page: req.params.type,
-            description: 'Choose food',
+            description: 'Выберите позицию',
             names: names,
             descriptions: descriptions,
             compositions: compositions,

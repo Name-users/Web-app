@@ -14,22 +14,22 @@ html
                     li
                         div.text
                             if is_admin
-                                a(href=page.toLowerCase() + '/' + names[x]) #{names[x]} (Edit)
+                                a(href=page.toLowerCase() + '/' + names[x]) #{names[x]} (Редактировать)
                             else
                                 p= names[x]
-                            p Post: #{posts[x]}
-                            p Self: #{selfs[x]}
+                            p Должность: #{posts[x]}
+                            p О себе: #{selfs[x]}
                         div.image
                             img(src= images[x])
             if is_admin
                 li
                     div.board_on_background
-                        a(href=page.toLowerCase() + '/add') Add staff
+                        a(href=page.toLowerCase() + '/add') Добавить сотрудника
                 li
                     div.board_on_background
-                        a(href= '/admin') Back
+                        a(href= '/admin') Назад
             else
                 div.board_on_background
-                    a(href='/') Back
+                    a(href='/') Назад
         //img(src='/images/self.webp')
 

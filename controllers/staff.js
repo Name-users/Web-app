@@ -16,8 +16,8 @@ exports.get = function (is_admin) {
         }
         res.render('staff', {
             title: 'The Krusty Krab',
-            page: 'Staff',
-            description: 'description',
+            page: 'Персонал',
+            description: 'Список наших сотрудников',
             names: names,
             posts: posts,
             selfs: selfs,

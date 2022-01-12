@@ -10,8 +10,8 @@ exports.get = function(is_admin) {
             numbers.push(tables[index].number)
         res.render('tables', {
             title: 'The Krusty Krab',
-            page: 'Tables',
-            description: 'Можете заказать столик',
+            page: 'Столики',
+            description: 'Здесь вы можете забронировать столик',
             tables: numbers,
             is_admin: is_admin
         })
@@ -21,7 +21,7 @@ exports.get = function(is_admin) {
 exports.get_by_number = function(is_admin) {
     return function (req, res, next) {
         if (db_helper.getElementsFromDir('./public/database/tables').indexOf(req.params.number) === -1) {
-            let err = new Error('Table not found');
+            let err = new Error('Столик не найден');
             err.status = 404;
             return next(err);
         }
@@ -39,7 +39,7 @@ exports.get_by_number = function(is_admin) {
 exports.post_by_number = function(is_admin) {
     return function (req, res, next) {
         if (db_helper.getElementsFromDir('./public/database/tables').indexOf(req.params.number) === -1 || req.body.name.length < 7) {
-            let err = new Error('Error when booking a table');
+            let err = new Error('Ошибка при бронировании столика');
             err.status = 400;
             return next(err);
         }
@@ -58,7 +58,7 @@ exports.post_by_number = function(is_admin) {
             //     .contentType("text/plain")
             //     .end("The table is booked successfully!");
         } else {
-            let err = new Error('Table is booked!');
+            let err = new Error('Столик забронирован');
             err.status = 400;
             return next(err);
         }
