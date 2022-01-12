@@ -53,10 +53,6 @@ exports.post_by_number = function(is_admin) {
                 res.redirect('/admin/tables/' + req.params.number)
             else
                 res.redirect('/tables/' + req.params.number)
-            // res
-            //     .status(200)
-            //     .contentType("text/plain")
-            //     .end("The table is booked successfully!");
         } else {
             let err = new Error('Столик забронирован');
             err.status = 400;

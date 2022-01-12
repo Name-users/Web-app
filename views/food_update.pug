@@ -11,30 +11,16 @@ html
 
             form(method='POST', action=path + '/update', enctype="multipart/form-data")
                 li
-                    //label Name:
                     input.text(name='name', value= name, type='text', placeholder="Имя")
                 li
-                    //label #{l2}:
                     input.text(name= n2, value= i2, type='text', placeholder= l2)
                 li
-                    //label #{l3}:
                     input.text(name=n3, value= i3, type='text', placeholder= l3)
                 li
-                    //div.board_on_background
-                    //    p Выберите изображение:
                     input.submit(name='filedata', type='file')
-                //li
-                //    label Image:
-                //        input.submit(name='filedata', type='file')
                 input.submit(value='Обновить', type='submit')
-
             if path !== 'add'
                 form(method= 'POST', action= path + '/delete')
                     input.submit(value='Удалить', type='submit')
-
             div.board_on_background
                 a(href='/admin') Назад
-
-
-
-        // add delete form

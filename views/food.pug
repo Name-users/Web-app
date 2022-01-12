@@ -20,9 +20,6 @@ html
                                     p= names[x]
                                 p Описание: #{descriptions[x]}
                                 p Состав: #{compositions[x]}
-                                //.toString()}
-                                     // - for (var y = 0; y < compositions[x].length; y++)
-                                     //     li= compositions[x][y]
                             div.image
                                 img(src= images[x])
             if is_admin && names.length === 0
@@ -39,5 +36,3 @@ html
             else
                 div.board_on_background
                     a(href='/menu') Назад
-            //img(src= image)
-

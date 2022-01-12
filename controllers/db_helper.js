@@ -15,7 +15,6 @@ exports.getElementsFromDir = function(path) {
             else
                 file_name = `${file_name}${files[i][symbol]}`
         }
-        // elements.push(files[i].split('.')[0]);
         elements.push(file_name);
     }
     return elements;

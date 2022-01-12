@@ -200,8 +200,8 @@ exports.post_menu_type_update = [
         let food = {
             name: req.body.name,
             description: req.body.description,
-            composition: req.body.composition,//.split(','),
-            image: image_path//'/images/menu/' + req.file.filename
+            composition: req.body.composition,
+            image: image_path
         }
         let path = './public/database/menu/' + req.params.type + '/' + food.name + '.json'
         if (db_helper.existFile('./public/database/menu/' + req.params.type, food.name)) {

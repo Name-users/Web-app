@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var menuRouter = require('./routes/menu')
 var selfRouter = require('./routes/self')
@@ -16,7 +16,6 @@ var app = express();
 
 var favicon = require('serve-favicon');
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-// app.use('/favicon.ico', express.static('images/favicon.ico'));
 
 
 // view engine setup
