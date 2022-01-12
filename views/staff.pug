@@ -14,7 +14,7 @@ html
                     li
                         div.text
                             if is_admin
-                                a(href=page.toLowerCase() + '/' + names[x]) #{names[x]} (Редактировать)
+                                a(href='staff/' + names[x]) #{names[x]} (Редактировать)
                             else
                                 p= names[x]
                             p Должность: #{posts[x]}
@@ -24,7 +24,7 @@ html
             if is_admin
                 li
                     div.board_on_background
-                        a(href=page.toLowerCase() + '/add') Добавить сотрудника
+                        a(href='staff/add') Добавить сотрудника
                 li
                     div.board_on_background
                         a(href= '/admin') Назад

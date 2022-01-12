@@ -17,7 +17,7 @@ html
 
             if table_status
                 form(method='POST', action='')
-                    input.text(name='name', value='', type='text', placeholder="Кодовое слово для брони (Имя)")
+                    input.text(name='name', value='', type='text', placeholder="Кодовое слово для брони (8)")
                     input.submit(value='Забронировать столик', type='submit')
             else
                 if is_admin

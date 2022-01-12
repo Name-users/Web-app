@@ -4,7 +4,19 @@ exports.getElementsFromDir = function(path) {
     let elements = [];
     let files = fs.readdirSync(path);
     for (let i in files) {
-        elements.push(files[i].split('.')[0]);
+        let index_point = -1
+        let file_name = ''
+        for (let symbol in files[i])
+            if (files[i][symbol] === '.')
+                index_point = symbol
+        for (let symbol in files[i]) {
+            if (symbol === index_point)
+                break
+            else
+                file_name = `${file_name}${files[i][symbol]}`
+        }
+        // elements.push(files[i].split('.')[0]);
+        elements.push(file_name);
     }
     return elements;
 }

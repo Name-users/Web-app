@@ -102,9 +102,11 @@ exports.get_menu_type_update = function (req, res, next) {
         name: food.name,
         path: food.name,
         l2: 'Описание',
+        n2: 'description',
         i2: food.description,
         l3: 'Состав',
-        i3: food.composition.toString()
+        n3: 'composition',
+        i3: food.composition//.toString()
     })
 }
 
@@ -118,8 +120,10 @@ exports.get_staff_type_update = function (req, res, next) {
         name: el.name,
         path: el.name,
         l2: 'Должность',
+        n2: 'post',
         i2: el.post,
         l3: 'О себе',
+        n3: 'self',
         i3: el.self
     })
 }
@@ -130,8 +134,10 @@ exports.get_menu_type_add = function (req, res, next) {
         name: '',
         path: 'add',
         l2: 'Описание',
+        n2: 'description',
         i2: '',
         l3: 'Состав',
+        n3: 'composition',
         i3: ''
     })
 }
@@ -142,8 +148,10 @@ exports.get_staff_type_add = function (req, res, next) {
         name: '',
         path: 'add',
         l2: 'Должность',
+        n2: 'post',
         i2: '',
         l3: 'О себе',
+        n3: 'self',
         i3: ''
     })
 }
@@ -192,7 +200,7 @@ exports.post_menu_type_update = [
         let food = {
             name: req.body.name,
             description: req.body.description,
-            composition: req.body.composition.split(','),
+            composition: req.body.composition,//.split(','),
             image: image_path//'/images/menu/' + req.file.filename
         }
         let path = './public/database/menu/' + req.params.type + '/' + food.name + '.json'
