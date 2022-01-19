@@ -9,15 +9,17 @@ html
         div.background_tables
             h1.title= title
             p.page Столик #{number}
-            if table_status
-                p.description Статус столика: не забронирован
-            else
-                p.description Статус столика: забронирован
+            p.description Статус столика: не забронирован до #{time}
             p.description Описание: #{description}
 
             if table_status
                 form(method='POST', action='')
-                    input.text(name='name', value='', type='text', placeholder="Кодовое слово для брони (8)")
+                    li
+                        label Начало времени бронирования:
+                        select(name='time')
+                            - for (let index=17; index <= 21; index++)
+                                option #{index}:00
+                    input.text(name='name', value='', type='text', placeholder="Кодовое слово для брони")
                     input.submit(value='Забронировать столик', type='submit')
             else
                 if is_admin

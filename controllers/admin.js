@@ -8,6 +8,7 @@ function create_exception(code, message) {
     return err;
 }
 
+// снимает бронь со столика
 exports.post_open_table = [
     function (req, res, next) {
         if (!db_helper.existFile('./public/database/tables', req.params.number) || !req.params.number.match(/^\d+$/)) {
@@ -18,6 +19,7 @@ exports.post_open_table = [
         if (!table.status) {
             table.owner = ""
             table.status = true
+            table.time = 'закрытия'
             db_helper.writeObject(path, table)
             next()
         }
@@ -29,6 +31,8 @@ exports.post_open_table = [
         res.redirect(`/admin/tables/${req.params.number}`)
     }
 ]
+
+// создаем столик
 exports.post_add_table = [
     function (req, res, next) {
         if (db_helper.existFile('./public/database/tables', req.body.number)  || !req.body.number.match(/^\d+$/)) {
@@ -39,7 +43,8 @@ exports.post_add_table = [
             number: req.body.number,
             status: true,
             description: req.body.description,
-            owner: ""
+            owner: "",
+            time: 'закрытия'
         }
         db_helper.writeObject(path, table)
         next()
@@ -48,6 +53,8 @@ exports.post_add_table = [
         res.redirect(`/admin/tables/${req.body.number}`)
     }
 ]
+
+// удаляем столик
 exports.post_delete_table = [
     function (req, res, next) {
         if (!db_helper.existFile('./public/database/tables', req.params.number)  || !req.params.number.match(/^\d+$/)) {
@@ -62,6 +69,7 @@ exports.post_delete_table = [
     }
 ]
 
+// добавим новый тип меню
 exports.post_add_type_menu = [
     function (req, res, next) {
         if (db_helper.existFile('./public/database/menu', req.body.type) || req.body.type.length < 3) {
@@ -78,6 +86,7 @@ exports.post_add_type_menu = [
     }
 ];
 
+// удалим тип меню
 exports.post_delete_type_menu = [
     function (req, res, next) {
         if (!db_helper.existFile('./public/database/menu/', req.params.type) ||
@@ -92,6 +101,7 @@ exports.post_delete_type_menu = [
     }
 ]
 
+// страница с редактирование позиции меню (еды)
 exports.get_menu_type_update = function (req, res, next) {
     if (!db_helper.existFile(`./public/database/menu/${req.params.type}/`, req.params.name)) {
         return next(create_exception(400, `Ошибка ввода!`))
@@ -110,6 +120,7 @@ exports.get_menu_type_update = function (req, res, next) {
     })
 }
 
+// страница с редактированием сотрудника
 exports.get_staff_type_update = function (req, res, next) {
     if (!db_helper.existFile(`./public/database/staff/`, req.params.name)) {
         return next(create_exception(400, `Ошибка ввода!`))
@@ -128,6 +139,7 @@ exports.get_staff_type_update = function (req, res, next) {
     })
 }
 
+// форма создании позиции в меню (страница)
 exports.get_menu_type_add = function (req, res, next) {
     res.render('food_update', {
         title: 'The Krusty Krab',
@@ -142,6 +154,7 @@ exports.get_menu_type_add = function (req, res, next) {
     })
 }
 
+// форма создания сотрудника
 exports.get_staff_type_add = function (req, res, next) {
     res.render('food_update', {
         title: 'The Krusty Krab',
@@ -156,6 +169,7 @@ exports.get_staff_type_add = function (req, res, next) {
     })
 }
 
+// удалить позицию в меню
 exports.post_menu_type_delete = [
     function (req, res, next) {
         let path = `./public/database/menu/${req.params.type}/${req.params.name}.json`
@@ -174,6 +188,7 @@ exports.post_menu_type_delete = [
     }
 ]
 
+// удалить анкету сотрудника
 exports.post_staff_type_delete = [
     function (req, res, next) {
         let path = `./public/database/staff/${req.params.name}.json`
@@ -192,6 +207,7 @@ exports.post_staff_type_delete = [
     }
 ]
 
+// обновить позицию в меню
 exports.post_menu_type_update = [
     function (req, res, next) {
         let image_path = '/images/default.webp'
@@ -217,6 +233,7 @@ exports.post_menu_type_update = [
     }
 ]
 
+// обновить анкету сотрудника
 exports.post_staff_type_update = [
     function (req, res, next) {
         let image_path = '/images/default.webp'

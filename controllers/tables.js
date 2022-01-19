@@ -31,14 +31,16 @@ exports.get_by_number = function(is_admin) {
             number: table.number,
             table_status: table.status,
             description: table.description,
-            is_admin: is_admin
+            is_admin: is_admin,
+            time: table.time
         })
     };
 };
 
+// бронируем столик
 exports.post_by_number = function(is_admin) {
     return function (req, res, next) {
-        if (db_helper.getElementsFromDir('./public/database/tables').indexOf(req.params.number) === -1 || req.body.name.length < 7) {
+        if (db_helper.getElementsFromDir('./public/database/tables').indexOf(req.params.number) === -1 || req.body.name.length < 1) {
             let err = new Error('Ошибка при бронировании столика');
             err.status = 400;
             return next(err);
@@ -48,6 +50,7 @@ exports.post_by_number = function(is_admin) {
         if (table.status) {
             table.owner = req.body.name
             table.status = false
+            table.time = req.body.time
             fs.writeFileSync(path, JSON.stringify(table))
             if (is_admin)
                 res.redirect('/admin/tables/' + req.params.number)
